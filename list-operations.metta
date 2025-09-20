@@ -11,6 +11,13 @@
     (if (== $x $y) True (isMember $x $ys))
 )
 
+(= (append $element Nil) (Cons $element Nil))
+(= (append $element (Cons $x $xs))
+    (Cons $x (append $element $xs))
+)
+
+!(append 10 (Cons 1 (Cons 2 (Cons 3 (Cons -5 Nil)))))
+
 (= (max-value Nil $num) $num)
 (= (max-value (Cons $x $xs) $num)
    (if (> $x $num) (max-value $xs $x) (max-value $xs $num))
@@ -31,8 +38,8 @@
 ;!(isMember "Nasi" (Cons "Abebe" (Cons "Kebede" (Cons "Nasi" Nil)))) ; True
 
 ;--------------------- Max Value ---------------------------------------
-!(max-value (Cons 1 (Cons 2 (Cons 3 Nil))) -100) ; 3
+;!(max-value (Cons 1 (Cons 2 (Cons 3 Nil))) -100) ; 3
 
 
 ;--------------------- Min Value ---------------------------------------
-!(min-value (Cons 1 (Cons 2 (Cons 3 (Cons -43 Nil)))) 100) ; -43
+;!(min-value (Cons 1 (Cons 2 (Cons 3 (Cons -43 Nil)))) 100) ; -43
