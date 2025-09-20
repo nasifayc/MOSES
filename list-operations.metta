@@ -73,6 +73,20 @@
 (= (reverse (Cons $x $xs) $res) 
     (reverse $xs (Cons $x $res))
 )
+
+
+(= (add $x $y) (+ $x $y))
+
+(= (foldl Nil $f $res) $res)
+(= (foldl (Cons $x $xs) $f $res) 
+    (foldl $xs $f ($f $x $res))
+)
+
+(= (sort Nil $res) $res)
+(= (sort (Cons $x $xs) $res)
+
+)
+
 ; --------------------- Length -------------------------------------------- 
 ;!(length (Cons 1 (Cons 2 (Cons 3 Nil)))) ; [3]
 ;!(length (Cons True (Cons False (Cons True (Cons True (Cons False Nil)))))) ; [5]
@@ -118,3 +132,7 @@
 
 ;--------------------- Reverse ---------------------------------------
 ;!(reverse (Cons 1 (Cons 2 (Cons 3 Nil))) Nil) 
+
+
+; --------------------- Fold Left -------------------------------------------- 
+!(foldl (Cons 12 (Cons -11 (Cons 5 Nil))) add 0) ; [6]
