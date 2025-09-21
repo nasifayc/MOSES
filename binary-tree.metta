@@ -16,6 +16,13 @@
     )
 )
 
+!(trace! (This is Inorder traversal) 
+    (inOrder (BinNum 10
+        (BinNum 5 (BinNum 2 LeafNum LeafNum) LeafNum)
+        (BinNum 15 LeafNum LeafNum))))
+
+
+
 (= (preOrder (BinNum $v $left $right))(
      let* (
         (() ( println! $v))
@@ -25,6 +32,12 @@
      ()
     )
 )
+!(trace! (This is PreOrder traversal) 
+    (preOrder (BinNum 10
+        (BinNum 5 (BinNum 2 LeafNum LeafNum) LeafNum)
+        (BinNum 15 LeafNum LeafNum))))
+
+
 
 (= (postOrder (BinNum $v $left $right))(
      let* (
@@ -35,18 +48,6 @@
      ()
     )
 )
-
-
-!(trace! (This is Inorder traversal) 
-    (inOrder (BinNum 10
-        (BinNum 5 (BinNum 2 LeafNum LeafNum) LeafNum)
-        (BinNum 15 LeafNum LeafNum))))
-
-!(trace! (This is PreOrder traversal) 
-    (preOrder (BinNum 10
-        (BinNum 5 (BinNum 2 LeafNum LeafNum) LeafNum)
-        (BinNum 15 LeafNum LeafNum))))
-
 !(trace! (This is PostOrder traversal) 
     (postOrder (BinNum 10
         (BinNum 5 (BinNum 2 LeafNum LeafNum) LeafNum)
