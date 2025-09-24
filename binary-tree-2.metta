@@ -34,7 +34,7 @@
         (Cons 12 (Cons 11 Leaf Leaf) (Cons 13 Leaf Leaf))))
 
 
-;------------------ This ignores duplicate item --------------------
+;------------------ duplicate item will be ignored --------------------
  (insert 10 (Cons 10
        (Cons 8 (Cons 7 Leaf Leaf) (Cons 9 Leaf Leaf))
        (Cons 12 (Cons 11 Leaf Leaf) (Cons 13 Leaf Leaf))))
