@@ -1,1 +1,0 @@
-!(if (or (> 2 3) (< 2 1) ) ("Hi Nasi") ("By Nasi"))
