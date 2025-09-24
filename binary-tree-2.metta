@@ -74,7 +74,7 @@
     )
 )
 
-; --------- if the target node have to non-leaf children, it will replaced by the max value from left child
+; --------- if the target node have non-leaf children, it will replaced by the max value from left sub-tree
 (delete 10 (Cons 10
         (Cons 8 (Cons 7 Leaf Leaf) (Cons 9 Leaf Leaf))
         (Cons 12 (Cons 11 Leaf Leaf) (Cons 13 Leaf Leaf)))) ;9 will become the root
