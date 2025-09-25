@@ -46,7 +46,27 @@
     (if (== $xs True) $xs (empty))
 )
 
-!(filter gr_ten ( 1 23 4 -200 56 78))
-!(filter true_only ( False False True True))
+(filter gr_ten ( 1 23 4 -200 56 78))
+(filter true_only ( False False True True))
 
+;---------------------------- Find And Replace ------------------------------
+(: findReplace (-> $t $x Expression Expression))
+(= (findReplace $x $y $xs)
+    (let $e (superpose $xs) 
+         (if (== $e $x) $y $e)
+    )
+)
+
+(findReplace 2 11 ( 1 2 3 10 12)) ; [1, 11, 3, 10, 12]
+
+
+;---------------------------- Find And Remove ------------------------------
+(: findRemove (-> $t Expression Expression))
+(= (findRemove $x $xs)
+    (let $e (superpose $xs) 
+         (if (== $e $x) (empty) $e)
+    )
+)
+
+!(findRemove 12 ( 1 2 3 10 12)) ; [1, 2, 3, 10]
 
