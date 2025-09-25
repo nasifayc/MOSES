@@ -116,7 +116,7 @@
 (= (negate $x) (not $x))
 
 
-(: map (-> (List $t) $_ (List $t) (List $t)))
+(: map (-> (List $t) (-> $t $t) (List $t) (List $t)))
 (= (map Nil $f $res) (reverse $res Nil))
 (= (map (Cons $x $xs) $f $res)
     (let $r ($f $x) (map $xs $f (Cons $r $res)))
@@ -133,7 +133,7 @@
     (if (> $x 10) True False)
 )
 
-(: filter (-> (List $t) $_ (List $t) (List $t)) )
+(: filter (-> (List $t) (-> Number Bool) (List $t) (List $t)) )
 (= (filter Nil $f $res) (reverse $res Nil))
 (= (filter (Cons $x $xs) $f $res)
     (if ($f $x) 
@@ -152,7 +152,7 @@
 (= (mul $x $y) (* $x $y))
 
 
-(: foldl (-> (List Number) $_  Number (List Number)))
+(: foldl (-> (List Number) (-> Number Number Number ) Number (List Number)))
 (= (foldl Nil $f $res) $res)
 (= (foldl (Cons $x $xs) $f $res) 
     (foldl $xs $f ($f $x $res))
@@ -179,5 +179,4 @@
     (insert $x (sort $xs $sorted))
 )
 
-
-!(sort (Cons 3 (Cons 6 (Cons 5 (Cons -5 Nil)))) Nil)
+(sort (Cons 3 (Cons 6 (Cons 5 (Cons -5 Nil)))) Nil)
