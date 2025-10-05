@@ -30,7 +30,6 @@
 (map_method_two  square (2 3 4 5))
 (map_method_two negate  (False False True True ))
 
- filter should check if the output of the boolean function in it's own not by a helper function
 ;----------------------------- Filter ------------------
 (: filter (-> (->Atom Atom) Expression Expression))
 (= (filter $f $xs)
