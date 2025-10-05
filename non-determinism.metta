@@ -30,8 +30,9 @@
 (map_method_two  square (2 3 4 5))
 (map_method_two negate  (False False True True ))
 
+ filter should check if the output of the boolean function in it's own not by a helper function
 ;----------------------------- Filter ------------------
-(: filter (-> (-> $t $t) Expression Expression))
+(: filter (-> (->Atom Atom) Expression Expression))
 (= (filter $f $xs)
     (collapse ($f (superpose $xs)))
 )
@@ -49,24 +50,31 @@
 (filter gr_ten ( 1 23 4 -200 56 78))
 (filter true_only ( False False True True))
 
+
+
 ;---------------------------- Find And Replace ------------------------------
-(: findReplace (-> $t $x Expression Expression))
+(: findReplace (-> Atom Atom Expression Expression))
+
+
 (= (findReplace $x $y $xs)
-    (let $e (superpose $xs) 
+    (collapse (
+        let $e (superpose $xs) 
          (if (== $e $x) $y $e)
+        )
     )
 )
 
-(findReplace 2 11 ( 1 2 3 10 12)) ; [1, 11, 3, 10, 12]
+!(findReplace 12 11 ( 1 2 3 10 12))
 
 
 ;---------------------------- Find And Remove ------------------------------
 (: findRemove (-> $t Expression Expression))
 (= (findRemove $x $xs)
-    (let $e (superpose $xs) 
+    (collapse (
+        let $e (superpose $xs) 
          (if (== $e $x) (empty) $e)
+        )
     )
 )
 
-!(findRemove 12 ( 1 2 3 10 12)) ; [1, 2, 3, 10]
-
+!(findRemove 12 ( 1 2 3 10 12)) ; 

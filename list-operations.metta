@@ -133,7 +133,12 @@
     (if (> $x 10) True False)
 )
 
-(: filter (-> (List $t) (-> Number Bool) (List $t) (List $t)) )
+(: filter-true (-> $t Bool))
+(= (filter-true $x)
+    (if (== $x True) True False)
+)
+
+(: filter (-> (List $t) (-> $t Bool) (List $t) (List $t)) )
 (= (filter Nil $f $res) (reverse $res Nil))
 (= (filter (Cons $x $xs) $f $res)
     (if ($f $x) 
@@ -142,7 +147,8 @@
     )
 )
 
-(filter (Cons 12 (Cons 20 (Cons 3 (Cons -10 Nil)))) gr-than-ten Nil) 
+!(filter (Cons 12 (Cons 20 (Cons 3 (Cons -10 Nil)))) gr-than-ten Nil) 
+!(filter (Cons True (Cons False (Cons True (Cons False Nil)))) filter-true Nil) 
 
 
 ; --------------------- Fold Left --------------------------------------------
