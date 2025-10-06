@@ -31,23 +31,27 @@
 (map_method_two negate  (False False True True ))
 
 ;----------------------------- Filter ------------------
-(: filter (-> (->Atom Atom) Expression Expression))
+(: filter (-> (-> Atom Bool) Expression Expression))
 (= (filter $f $xs)
-    (collapse ($f (superpose $xs)))
+    (collapse (
+        let $e (superpose $xs) 
+        (if ($f $e) $e (empty))
+        )
+    )
 )
 
-(: gr_ten (-> Number Number))
+(: gr_ten (-> Atom Bool))
 (= (gr_ten $xs) 
-    (if (> $xs 10) $xs (empty))
+    (if (> $xs 10) True False)
 )
 
-(: true_only (-> Bool Bool))
+(: true_only (-> Atom Bool))
 (= (true_only $xs) 
-    (if (== $xs True) $xs (empty))
+    (if (== $xs True) True False)
 )
 
-(filter gr_ten ( 1 23 4 -200 56 78))
-(filter true_only ( False False True True))
+!(filter gr_ten ( 1 23 4 -200 56 78))
+!(filter true_only ( False False True True))
 
 
 
@@ -63,7 +67,7 @@
     )
 )
 
-!(findReplace 12 11 ( 1 2 3 10 12))
+(findReplace 12 11 ( 1 2 3 10 12))
 
 
 ;---------------------------- Find And Remove ------------------------------
@@ -76,4 +80,4 @@
     )
 )
 
-!(findRemove 12 ( 1 2 3 10 12)) ; 
+(findRemove 12 ( 1 2 3 10 12)) ; 
